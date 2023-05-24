@@ -1,0 +1,31 @@
+﻿<Window x:Class="KinoVideoProkat_K.Windows.AddEditZakup"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KinoVideoProkat_K.Windows"
+        mc:Ignorable="d" Icon="../Assets/Zakup.png"
+        Title="Редактирование закупки" Height="300" Width="300">
+    <Grid>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 0 0 5">
+                <TextBlock Text="Провайдер" Margin="0 0 5 0"/>
+                <ComboBox Name="CbProvider" Width="150"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 0 0 5">
+                <TextBlock Text="Фильм" Margin="0 0 5 0"/>
+                <ComboBox Name="CbFilm" Width="150"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 0 0 5">
+                <TextBlock Text="Дата продажи"  Margin="0 0 5 0"/>
+                <TextBox Name="TbDateBuy" Width="150" />
+            </StackPanel>
+
+            <Button Content="Расчитать стоимость" Name="BtnSumm" Click="BtnSumm_Click"  Width="120" Margin="0 5 0 0"/>
+
+            <Button Content="Сохранить" Name="BtnSave" Click="BtnSave_Click" Width="100" Margin="0 10 0 0"/>
+        </StackPanel>
+    </Grid>
+</Window>

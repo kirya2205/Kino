@@ -1,0 +1,250 @@
+﻿<Window x:Class="KinoVideoProkat_K.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KinoVideoProkat_K"
+        mc:Ignorable="d"
+        Title="Киновидеопрокат" Icon="Assets/logo.png" 
+        Height="800" Width="930" MinHeight="800" MinWidth="930">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+            <Image Source="Assets/logo.png" Width="100" HorizontalAlignment="Left"/>
+            <TextBlock Text='ООО "КИНОВИДЕОПРОКАТ"' VerticalAlignment="Center"
+                       FontSize="35" FontWeight="Bold"/>
+        </StackPanel>
+
+        <TabControl Grid.Row="1" FontSize="15">
+            <TabItem Header="Отдел маркетинга и закупок">
+                <StackPanel Orientation="Vertical">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="100"/>
+                        </Grid.ColumnDefinitions>
+
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                            <Image Source="Assets/film.png" Width="65"/>
+                            <TextBlock Text="Фильмы" VerticalAlignment="Center"
+                                   Style="{StaticResource TBzagol}"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1" Orientation="Horizontal" 
+                                        VerticalAlignment="Bottom" HorizontalAlignment="Right">
+                            <Button Name="BtnAddFilm" Click="BtnAddFilm_Click" Style="{StaticResource BtnEdit}">
+                                <Image Source="Assets/add.png" />
+                            </Button>
+                            <Button Name="BtnEditFilm" Click="BtnEditFilm_Click" Style="{StaticResource BtnEdit}">
+                                <Image Source="Assets/edit.png" />
+                            </Button>
+                            <Button Name="BtnDeleteFilm" Click="BtnDeleteFilm_Click" Style="{StaticResource BtnEdit}">
+                                <Image Source="Assets/delete.png" />
+                            </Button>
+                        </StackPanel>
+
+
+                    </Grid>
+
+
+                    <Border BorderBrush="Gray" BorderThickness="4">
+                        <ListView Name="LVFilms" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Style="{StaticResource LVOtdel}">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="id" DisplayMemberBinding="{Binding IdFilm}"/>
+                                    <GridViewColumn Header="Название" DisplayMemberBinding="{Binding NameFilm}"/>
+                                    <GridViewColumn Header="Автор" DisplayMemberBinding="{Binding Author}"/>
+                                    <GridViewColumn Header="Компания" DisplayMemberBinding="{Binding Company}"/>
+                                    <GridViewColumn Header="Год" DisplayMemberBinding="{Binding Year}"/>
+                                    <GridViewColumn Header="Страна" DisplayMemberBinding="{Binding Land}"/>
+                                    <GridViewColumn Header="Время" DisplayMemberBinding="{Binding Time}"/>
+                                    <GridViewColumn Header="Стоимость" DisplayMemberBinding="{Binding Cost}"/>
+                                    <GridViewColumn Header="Рейтинг" DisplayMemberBinding="{Binding Rate}"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </Border>
+
+
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="100"/>
+                        </Grid.ColumnDefinitions>
+
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                            <Image Source="Assets/Zakup.png" Width="65"/>
+                            <TextBlock Text="Закупка" VerticalAlignment="Center"
+                                   Style="{StaticResource TBzagol}"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1" Orientation="Horizontal" 
+                                        VerticalAlignment="Bottom" HorizontalAlignment="Right">
+                            <Button Name="BtnAddZakup" Click="BtnAddZakup_Click" Style="{StaticResource BtnEdit}">
+                                <Image Source="Assets/add.png" />
+                            </Button>
+                            <Button Name="BtnEditZakup" Click="BtnEditZakup_Click"  Style="{StaticResource BtnEdit}">
+                                <Image Source="Assets/edit.png" />
+                            </Button>
+                            <Button Name="BtnDeleteZakup" Click="BtnDeleteZakup_Click"  Style="{StaticResource BtnEdit}">
+                                <Image Source="Assets/delete.png" />
+                            </Button>
+                        </StackPanel>
+
+
+                    </Grid>
+
+
+                    <Border BorderBrush="Gray" BorderThickness="4">
+                        <ListView Name="LVZakup" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Style="{StaticResource LVOtdel}">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="id" DisplayMemberBinding="{Binding Id}"/>
+                                    <GridViewColumn Header="Провайдер" DisplayMemberBinding="{Binding Provider.NameProvider}"/>
+                                    <GridViewColumn Header="Фильм" DisplayMemberBinding="{Binding Film.NameFilm}"/>
+                                    <GridViewColumn Header="Дата продажи" DisplayMemberBinding="{Binding DateBuy, StringFormat=d}"/>
+                                    <GridViewColumn Header="Сумма продажи" DisplayMemberBinding="{Binding Summ}"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </Border>
+                </StackPanel>
+            </TabItem>
+
+            <TabItem Header="Отдел аренды">
+                <StackPanel Orientation="Vertical">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="129*"/>
+                            <ColumnDefinition Width="637*"/>
+                            <ColumnDefinition Width="100"/>
+                        </Grid.ColumnDefinitions>
+
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.ColumnSpan="2">
+                            <Image Source="Assets/kino.png" Width="65"/>
+                            <TextBlock Text="Кинотеатры" VerticalAlignment="Center"
+                                   Style="{StaticResource TBzagol}"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="2" Orientation="Horizontal" 
+                                        VerticalAlignment="Bottom" HorizontalAlignment="Right">
+                            <Button Name="BtnAddCinema" Click="BtnAddCinema_Click" Style="{StaticResource BtnEdit}">
+                                <Image Source="Assets/add.png" />
+                            </Button>
+                            <Button Name="BtnEditCinema" Click="BtnEditCinema_Click" Style="{StaticResource BtnEdit}">
+                                <Image Source="Assets/edit.png" />
+                            </Button>
+                            <Button Name="BtnDeleteCinema" Click="BtnDeleteCinema_Click" Style="{StaticResource BtnEdit}">
+                                <Image Source="Assets/delete.png" />
+                            </Button>
+                        </StackPanel>
+
+
+                    </Grid>
+
+
+                    <Border BorderBrush="Gray" BorderThickness="4">
+                        <ListView Name="LVKinot" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Style="{StaticResource LVOtdel}">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="id" DisplayMemberBinding="{Binding IdCinema}"/>
+                                    <GridViewColumn Header="Название" DisplayMemberBinding="{Binding NameCinema}"/>
+                                    <GridViewColumn Header="Адрес" DisplayMemberBinding="{Binding Address}"/>
+                                    <GridViewColumn Header="Район" DisplayMemberBinding="{Binding District}"/>
+                                    <GridViewColumn Header="Посадочных мест" DisplayMemberBinding="{Binding Capacity}"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </Border>
+
+
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="100"/>
+                        </Grid.ColumnDefinitions>
+
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                            <Image Source="Assets/ArendFilm.png" Width="65"/>
+                            <TextBlock Text="Аренда фильмов" VerticalAlignment="Center"
+                                   Style="{StaticResource TBzagol}"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1" Orientation="Horizontal" 
+                                        VerticalAlignment="Bottom" HorizontalAlignment="Right">
+                            <Button Name="BtnAddRent" Click="BtnAddRent_Click" Style="{StaticResource BtnEdit}">
+                                <Image Source="Assets/add.png" />
+                            </Button>
+                            <Button Name="BtnEditRent" Click="BtnEditRent_Click"  Style="{StaticResource BtnEdit}">
+                                <Image Source="Assets/edit.png" />
+                            </Button>
+                            <Button Name="BtnDeleteRent" Click="BtnDeleteRent_Click"  Style="{StaticResource BtnEdit}">
+                                <Image Source="Assets/delete.png" />
+                            </Button>
+                        </StackPanel>
+
+
+                    </Grid>
+
+
+                    <Border BorderBrush="Gray" BorderThickness="4">
+                        <ListView Name="LVArenda"  ScrollViewer.HorizontalScrollBarVisibility="Disabled" Style="{StaticResource LVOtdel}">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="id" DisplayMemberBinding="{Binding IdRent}"/>
+                                    <GridViewColumn Header="Дата начала" DisplayMemberBinding="{Binding DateStart, StringFormat=d}"/>
+                                    <GridViewColumn Header="Дата окончания" DisplayMemberBinding="{Binding DateStop, StringFormat=d}"/>
+                                    <GridViewColumn Header="Ответственное лицо" DisplayMemberBinding="{Binding Worker}"/>
+                                    <GridViewColumn Header="Стоимость" DisplayMemberBinding="{Binding Summa}"/>
+                                    <GridViewColumn Header="Пени" DisplayMemberBinding="{Binding Tax}"/>
+                                    <GridViewColumn Header="Кинотеатр" DisplayMemberBinding="{Binding Cinema.NameCinema}"/>
+                                    <GridViewColumn Header="Фильм" DisplayMemberBinding="{Binding Film.NameFilm}"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </Border>
+                </StackPanel>
+            </TabItem>
+
+            <TabItem Header="Отчеты">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="20 0 0 0">
+                    <Button Name="BtnArendaZaMesac" Click="BtnArendaZaMesac_Click" HorizontalAlignment="Left" Background="Transparent" BorderBrush="Transparent">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Assets/pdf.png" Width="60"/>
+                            <TextBlock Text="Аренда за последний месяц" VerticalAlignment="Center"
+                                   Style="{StaticResource TBzagol}"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Name="BtnDolgiZaMesac" Click="BtnDolgiZaMesac_Click" HorizontalAlignment="Left" Background="Transparent" BorderBrush="Transparent">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Assets/pdf.png" Width="60"/>
+                            <TextBlock Text="Долги за месяц" VerticalAlignment="Center" Style="{StaticResource TBzagol}"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Name="BtnRatingKono" Click="BtnRatingKono_Click" HorizontalAlignment="Left" Background="Transparent" BorderBrush="Transparent">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Assets/pdf.png" Width="60"/>
+                            <TextBlock Text="Рейтинг кинофильмов" VerticalAlignment="Center" Style="{StaticResource TBzagol}"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Name="BtnViruchkaZaMesac" Click="BtnViruchkaZaMesac_Click" HorizontalAlignment="Left" Background="Transparent" BorderBrush="Transparent">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Assets/pdf.png" Width="60"/>
+                            <TextBlock Text="Выручка за период" VerticalAlignment="Center" Style="{StaticResource TBzagol}"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

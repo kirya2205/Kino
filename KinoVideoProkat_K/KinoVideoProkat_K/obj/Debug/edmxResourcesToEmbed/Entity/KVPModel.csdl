@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="KinoVideoProkatBD_KModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="KinoVideoProkatBD_KEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Cinemas" EntityType="KinoVideoProkatBD_KModel.Cinema" />
+    <EntitySet Name="Films" EntityType="KinoVideoProkatBD_KModel.Film" />
+    <EntitySet Name="Providers" EntityType="KinoVideoProkatBD_KModel.Provider" />
+    <EntitySet Name="Purchases" EntityType="KinoVideoProkatBD_KModel.Purchase" />
+    <EntitySet Name="Rents" EntityType="KinoVideoProkatBD_KModel.Rent" />
+    <EntitySet Name="sysdiagrams" EntityType="KinoVideoProkatBD_KModel.sysdiagram" />
+    <AssociationSet Name="FK_Rent_Cinema" Association="KinoVideoProkatBD_KModel.FK_Rent_Cinema">
+      <End Role="Cinema" EntitySet="Cinemas" />
+      <End Role="Rent" EntitySet="Rents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Purchase_Film" Association="KinoVideoProkatBD_KModel.FK_Purchase_Film">
+      <End Role="Film" EntitySet="Films" />
+      <End Role="Purchase" EntitySet="Purchases" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rent_Film" Association="KinoVideoProkatBD_KModel.FK_Rent_Film">
+      <End Role="Film" EntitySet="Films" />
+      <End Role="Rent" EntitySet="Rents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Purchase_Provider" Association="KinoVideoProkatBD_KModel.FK_Purchase_Provider">
+      <End Role="Provider" EntitySet="Providers" />
+      <End Role="Purchase" EntitySet="Purchases" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Cinema">
+    <Key>
+      <PropertyRef Name="IdCinema" />
+    </Key>
+    <Property Name="IdCinema" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NameCinema" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="INNCinema" Type="Int64" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Chief" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PhoneChief" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Owner" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PhoneOwner" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="District" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="BankCinema" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="AccountCinema" Type="Int64" />
+    <Property Name="Capacity" Type="Int32" />
+    <NavigationProperty Name="Rents" Relationship="KinoVideoProkatBD_KModel.FK_Rent_Cinema" FromRole="Cinema" ToRole="Rent" />
+  </EntityType>
+  <EntityType Name="Film">
+    <Key>
+      <PropertyRef Name="IdFilm" />
+    </Key>
+    <Property Name="IdFilm" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NameFilm" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Author" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Producer" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Company" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Year" Type="Int32" />
+    <Property Name="Land" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Time" Type="Time" Precision="7" />
+    <Property Name="Cost" Type="Int32" />
+    <Property Name="Rate" Type="Int32" />
+    <NavigationProperty Name="Purchases" Relationship="KinoVideoProkatBD_KModel.FK_Purchase_Film" FromRole="Film" ToRole="Purchase" />
+    <NavigationProperty Name="Rents" Relationship="KinoVideoProkatBD_KModel.FK_Rent_Film" FromRole="Film" ToRole="Rent" />
+  </EntityType>
+  <EntityType Name="Provider">
+    <Key>
+      <PropertyRef Name="IdProvider" />
+    </Key>
+    <Property Name="IdProvider" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NameProvider" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="INN" Type="Int64" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Bank" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Account" Type="Int32" />
+    <Property Name="Sign" Type="Boolean" />
+    <NavigationProperty Name="Purchases" Relationship="KinoVideoProkatBD_KModel.FK_Purchase_Provider" FromRole="Provider" ToRole="Purchase" />
+  </EntityType>
+  <EntityType Name="Purchase">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdProvider" Type="Int32" />
+    <Property Name="IdFilm" Type="Int32" />
+    <Property Name="DateBuy" Type="DateTime" Precision="0" />
+    <Property Name="Summ" Type="Decimal" Precision="19" Scale="4" />
+    <NavigationProperty Name="Film" Relationship="KinoVideoProkatBD_KModel.FK_Purchase_Film" FromRole="Purchase" ToRole="Film" />
+    <NavigationProperty Name="Provider" Relationship="KinoVideoProkatBD_KModel.FK_Purchase_Provider" FromRole="Purchase" ToRole="Provider" />
+  </EntityType>
+  <EntityType Name="Rent">
+    <Key>
+      <PropertyRef Name="IdRent" />
+    </Key>
+    <Property Name="IdRent" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DateStart" Type="DateTime" Precision="0" />
+    <Property Name="DateStop" Type="DateTime" Precision="0" />
+    <Property Name="Worker" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PhoneWorker" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Summa" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Tax" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="IdCinema" Type="Int32" />
+    <Property Name="IdFilm" Type="Int32" />
+    <NavigationProperty Name="Cinema" Relationship="KinoVideoProkatBD_KModel.FK_Rent_Cinema" FromRole="Rent" ToRole="Cinema" />
+    <NavigationProperty Name="Film" Relationship="KinoVideoProkatBD_KModel.FK_Rent_Film" FromRole="Rent" ToRole="Film" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_Rent_Cinema">
+    <End Type="KinoVideoProkatBD_KModel.Cinema" Role="Cinema" Multiplicity="0..1" />
+    <End Type="KinoVideoProkatBD_KModel.Rent" Role="Rent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cinema">
+        <PropertyRef Name="IdCinema" />
+      </Principal>
+      <Dependent Role="Rent">
+        <PropertyRef Name="IdCinema" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Purchase_Film">
+    <End Type="KinoVideoProkatBD_KModel.Film" Role="Film" Multiplicity="0..1" />
+    <End Type="KinoVideoProkatBD_KModel.Purchase" Role="Purchase" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Film">
+        <PropertyRef Name="IdFilm" />
+      </Principal>
+      <Dependent Role="Purchase">
+        <PropertyRef Name="IdFilm" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rent_Film">
+    <End Type="KinoVideoProkatBD_KModel.Film" Role="Film" Multiplicity="0..1" />
+    <End Type="KinoVideoProkatBD_KModel.Rent" Role="Rent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Film">
+        <PropertyRef Name="IdFilm" />
+      </Principal>
+      <Dependent Role="Rent">
+        <PropertyRef Name="IdFilm" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Purchase_Provider">
+    <End Type="KinoVideoProkatBD_KModel.Provider" Role="Provider" Multiplicity="0..1" />
+    <End Type="KinoVideoProkatBD_KModel.Purchase" Role="Purchase" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Provider">
+        <PropertyRef Name="IdProvider" />
+      </Principal>
+      <Dependent Role="Purchase">
+        <PropertyRef Name="IdProvider" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

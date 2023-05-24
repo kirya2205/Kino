@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище KinoVideoProkatBD_KModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Cinema">
+    <Key>
+      <PropertyRef Name="IdCinema" />
+    </Key>
+    <Property Name="IdCinema" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NameCinema" Type="varchar(max)" />
+    <Property Name="INNCinema" Type="bigint" />
+    <Property Name="Address" Type="varchar(max)" />
+    <Property Name="Chief" Type="varchar(max)" />
+    <Property Name="PhoneChief" Type="varchar(max)" />
+    <Property Name="Owner" Type="varchar(max)" />
+    <Property Name="PhoneOwner" Type="varchar(max)" />
+    <Property Name="Phone" Type="varchar(max)" />
+    <Property Name="District" Type="varchar(max)" />
+    <Property Name="BankCinema" Type="varchar(max)" />
+    <Property Name="AccountCinema" Type="bigint" />
+    <Property Name="Capacity" Type="int" />
+  </EntityType>
+  <EntityType Name="Film">
+    <Key>
+      <PropertyRef Name="IdFilm" />
+    </Key>
+    <Property Name="IdFilm" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NameFilm" Type="varchar(max)" />
+    <Property Name="Author" Type="varchar(max)" />
+    <Property Name="Comment" Type="varchar(max)" />
+    <Property Name="Producer" Type="varchar(max)" />
+    <Property Name="Company" Type="varchar(max)" />
+    <Property Name="Year" Type="int" />
+    <Property Name="Land" Type="varchar(max)" />
+    <Property Name="Time" Type="time" Precision="7" />
+    <Property Name="Cost" Type="int" />
+    <Property Name="Rate" Type="int" />
+  </EntityType>
+  <EntityType Name="Provider">
+    <Key>
+      <PropertyRef Name="IdProvider" />
+    </Key>
+    <Property Name="IdProvider" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NameProvider" Type="varchar(max)" />
+    <Property Name="INN" Type="bigint" />
+    <Property Name="Address" Type="varchar(max)" />
+    <Property Name="Bank" Type="varchar(max)" />
+    <Property Name="Account" Type="int" />
+    <Property Name="Sign" Type="bit" />
+  </EntityType>
+  <EntityType Name="Purchase">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdProvider" Type="int" />
+    <Property Name="IdFilm" Type="int" />
+    <Property Name="DateBuy" Type="date" />
+    <Property Name="Summ" Type="money" />
+  </EntityType>
+  <EntityType Name="Rent">
+    <Key>
+      <PropertyRef Name="IdRent" />
+    </Key>
+    <Property Name="IdRent" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DateStart" Type="date" />
+    <Property Name="DateStop" Type="date" />
+    <Property Name="Worker" Type="varchar(max)" />
+    <Property Name="PhoneWorker" Type="varchar(max)" />
+    <Property Name="Summa" Type="money" />
+    <Property Name="Tax" Type="money" />
+    <Property Name="IdCinema" Type="int" />
+    <Property Name="IdFilm" Type="int" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_Purchase_Film">
+    <End Role="Film" Type="Self.Film" Multiplicity="0..1" />
+    <End Role="Purchase" Type="Self.Purchase" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Film">
+        <PropertyRef Name="IdFilm" />
+      </Principal>
+      <Dependent Role="Purchase">
+        <PropertyRef Name="IdFilm" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Purchase_Provider">
+    <End Role="Provider" Type="Self.Provider" Multiplicity="0..1" />
+    <End Role="Purchase" Type="Self.Purchase" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Provider">
+        <PropertyRef Name="IdProvider" />
+      </Principal>
+      <Dependent Role="Purchase">
+        <PropertyRef Name="IdProvider" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rent_Cinema">
+    <End Role="Cinema" Type="Self.Cinema" Multiplicity="0..1" />
+    <End Role="Rent" Type="Self.Rent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cinema">
+        <PropertyRef Name="IdCinema" />
+      </Principal>
+      <Dependent Role="Rent">
+        <PropertyRef Name="IdCinema" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rent_Film">
+    <End Role="Film" Type="Self.Film" Multiplicity="0..1" />
+    <End Role="Rent" Type="Self.Rent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Film">
+        <PropertyRef Name="IdFilm" />
+      </Principal>
+      <Dependent Role="Rent">
+        <PropertyRef Name="IdFilm" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище KinoVideoProkatBD_KModelContainer">
+    <EntitySet Name="Cinema" EntityType="Self.Cinema" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Film" EntityType="Self.Film" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Provider" EntityType="Self.Provider" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Purchase" EntityType="Self.Purchase" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rent" EntityType="Self.Rent" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Purchase_Film" Association="Self.FK_Purchase_Film">
+      <End Role="Film" EntitySet="Film" />
+      <End Role="Purchase" EntitySet="Purchase" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Purchase_Provider" Association="Self.FK_Purchase_Provider">
+      <End Role="Provider" EntitySet="Provider" />
+      <End Role="Purchase" EntitySet="Purchase" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rent_Cinema" Association="Self.FK_Rent_Cinema">
+      <End Role="Cinema" EntitySet="Cinema" />
+      <End Role="Rent" EntitySet="Rent" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rent_Film" Association="Self.FK_Rent_Film">
+      <End Role="Film" EntitySet="Film" />
+      <End Role="Rent" EntitySet="Rent" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

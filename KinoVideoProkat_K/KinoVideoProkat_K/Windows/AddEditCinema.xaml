@@ -1,0 +1,72 @@
+﻿<Window x:Class="KinoVideoProkat_K.Windows.AddEditCinema"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KinoVideoProkat_K.Windows"
+        mc:Ignorable="d"
+        Title="Редактирование кинотеатра" Icon="../Assets/Kino.png"
+        Height="350" Width="700">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 0 0 5">
+                <TextBlock Text="Название: " Margin="0 0 5 0"/>
+                <TextBox Name="TbNameCinema" Width="150" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 0 0 5">
+                <TextBlock Text="ИНН: " Margin="0 0 5 0"/>
+                <TextBox Name="TbINNCinema" Width="150" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 0 0 5">
+                <TextBlock Text="Адрес: " Margin="0 0 5 0"/>
+                <TextBox Name="TbAddress" Width="150" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 0 0 5">
+                <TextBlock Text="Район: " Margin="0 0 5 0"/>
+                <TextBox Name="TbDistrict" Width="150" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 0 0 5">
+                <TextBlock Text="Телефон кинотеатра: " Margin="0 0 5 0"/>
+                <TextBox Name="TbPhone" Width="150" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 0 0 5">
+                <TextBlock Text="Количество посадочных мест: " Margin="0 0 5 0"/>
+                <TextBox Name="TbCapacity" Width="150" />
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 0 0 5">
+                <TextBlock Text="Директор: " Margin="0 0 5 0"/>
+                <TextBox Name="TbChief" Width="150" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 0 0 5">
+                <TextBlock Text="Номер директора: " Margin="0 0 5 0"/>
+                <TextBox Name="TbPhoneChief" Width="150" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 0 0 5">
+                <TextBlock Text="Владелец: " Margin="0 0 5 0"/>
+                <TextBox Name="TbOwner" Width="150" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 0 0 5">
+                <TextBlock Text="Номер владельца: " Margin="0 0 5 0"/>
+                <TextBox Name="TbPhoneOwner" Width="150" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 0 0 5">
+                <TextBlock Text="Банк кинотеатра: " Margin="0 0 5 0"/>
+                <TextBox Name="TbBankCinema" Width="150" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 0 0 5">
+                <TextBlock Text="Банковского счет кинотеатра: " Margin="0 0 5 0"/>
+                <TextBox Name="TbAccountCinema" Width="150" />
+            </StackPanel>
+        </StackPanel>
+
+        <Button Content="Сохранить" Name="BtnSave" Click="BtnSave_Click"  Width="100" Height="30" Grid.ColumnSpan="2" Margin="0,220,0,0"/>
+    </Grid>
+</Window>
